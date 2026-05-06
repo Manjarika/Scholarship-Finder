@@ -605,10 +605,15 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`\n🚀 Scholarship Finder Backend Server is running on port ${PORT}`);
-  console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🗄️  Mock Database: 6 sample scholarships loaded\n`);
-});
+// Export app for Vercel serverless functions
+module.exports = app;
+
+// Start server only in development
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`\n🚀 Scholarship Finder Backend Server is running on port ${PORT}`);
+    console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🗄️  Mock Database: 6 sample scholarships loaded\n`);
+  });
+}
