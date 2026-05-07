@@ -48,7 +48,7 @@ function StudentForm() {
 
       console.log('Sending request to backend:', requestData);
 
-      const response = await fetch('http://localhost:5000/api/find-scholarships', {
+      const response = await fetch('/api/find-scholarships', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
