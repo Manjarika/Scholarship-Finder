@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm run build && cd .. && echo 'Build complete'",
-  "outputDirectory": "frontend/build",
   "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run build",
+        "outputDirectory": "build"
+      }
+    },
     {
       "src": "api/index.js",
       "use": "@vercel/node",
